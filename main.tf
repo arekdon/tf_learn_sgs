@@ -50,6 +50,14 @@ resource "aws_security_group" "bastion" {
 
   ingress {
     # TLS (change to whatever ports you need)
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = var.myip
+  }
+
+  ingress {
+    # TLS (change to whatever ports you need)
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
@@ -63,3 +71,5 @@ resource "aws_security_group" "bastion" {
     cidr_blocks     = ["0.0.0.0/0"]
   }
 }
+
+
