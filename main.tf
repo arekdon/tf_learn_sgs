@@ -85,6 +85,14 @@ resource "aws_security_group" "web" {
     security_groups = [aws_security_group.v2lbsg.id]
   }
 
+  ingress {
+    # SSh access from bastion
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
+    security_groups = [aws_security_group.bastion.id]
+  }
+
   egress {
     from_port       = 0
     to_port         = 0
