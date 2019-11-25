@@ -72,4 +72,24 @@ resource "aws_security_group" "bastion" {
   }
 }
 
+resource "aws_security_group" "web" {
+  name        = "allow_http_to_webserver"
+  description = "Allow web traffic from LB to web servers"
+  vpc_id      = var.vpcid
+
+  ingress {
+    # TLS (change to whatever ports you need)
+    from_port       = 80
+    to_port         = 80
+    protocol        = "tcp"
+    security_groups = [aws_security_group.v2lbsg.id]
+  }
+
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
+}
 
