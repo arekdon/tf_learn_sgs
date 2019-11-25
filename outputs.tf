@@ -21,3 +21,15 @@ output "aws_bastion_arn" {
 output "aws_bastion_ingress" {
   value = aws_security_group.bastion.ingress
 }
+
+output "aws_webserver_id" {
+  value = aws_security_group.web.id
+}
+
+output "aws_webserver_arn" {
+  value = aws_security_group.web.arn
+}
+
+output "aws_webserver_ingress" {
+  value = aws_security_group.web.ingress
+}
